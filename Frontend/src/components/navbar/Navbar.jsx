@@ -40,17 +40,19 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export const Navbar = () => {
     return (
-        <div className="w-full bg-[#e91e63] py-3 px-5 lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
-            {/* Left - Logo */}
-            <div className="flex items-center space-x-2">
-                <span className="text-white text-2xl font-semibold">• Swaad</span>
-            </div>
+        <div className="flex">
+            <div className="w-full bg-[#e91e63] py-3 px-5 lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
+                {/* Left - Logo */}
+                <div className="flex items-center space-x-2">
+                    <span className="text-white text-2xl font-semibold">• Swaad</span>
+                </div>
 
-            {/* Right - Search Icon */}
-            <div>
-                <IconButton>
-                    <SearchIcon sx={{ fontSize: "1.5rem", color: "white" }} />
-                </IconButton>
+                {/* Right - Search Icon */}
+                <div>
+                    <IconButton>
+                        <SearchIcon sx={{ fontSize: "1.5rem", color: "white" }} />
+                    </IconButton>
+                </div>
             </div>
         </div>
     );
