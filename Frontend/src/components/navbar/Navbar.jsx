@@ -87,7 +87,8 @@ import "./Navbar.css"
 export const Navbar = () => {
     return (
         <div className="flex">
-            <div className="w-full bg-[#e91e63] py-3 px-5 lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
+            <div className="w-full bg-[#e91e63] py-2 px-5
+             lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
                 {/* Left - Logo */}
                 <div className="flex items-center space-x-2">
                     <span className="text-white text-2xl font-semibold"> Swaad</span>
