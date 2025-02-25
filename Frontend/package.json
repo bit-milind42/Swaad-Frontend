@@ -15,12 +15,15 @@
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.4",
     "@tailwindcss/vite": "^4.0.6",
+    "formik": "^2.4.6",
     "lightningcss": "^1.20.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
-    "tailwindcss": "^4.0.6"
+    "tailwindcss": "^4.0.6",
+    "yup": "^1.6.1",
+    "yupp": "^0.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

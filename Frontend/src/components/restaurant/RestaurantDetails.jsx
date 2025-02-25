@@ -2,6 +2,7 @@ import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typogr
 import React, { useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import MenuCard from "./MenuCard";
 
 const categories=[
     "Pizza",
@@ -17,6 +18,8 @@ const foodTypes=[
     {label:"Seasonal", value:"seasonal"},
     {label:"Continental", value:"continental"}
 ]
+
+const menu=[1,1,1,1,1]
 
 const RestaurantDetails = () => {
     const [foodType,setFoodType]=useState("all")
@@ -73,7 +76,7 @@ const RestaurantDetails = () => {
             <Divider/>
 
             <section className="pt-[2rem] lg:flex relative">
-                <div className="space-y-10 lg:w-[20%] filter">
+                <div className="space-y-10 lg:w-[20%] filter ">
                     <div className="box space-y-5 lg:sticky top-28">
                         <div>
                             <Typography variant="h5" sx={{paddingBottom:"1rem"}}>
@@ -92,6 +95,8 @@ const RestaurantDetails = () => {
 
                             </FormControl>
                         </div>
+                        <Divider/>
+                        <br/>
                         <div>
                             <Typography variant="h5" sx={{paddingBottom:"1rem"}}>
                                 Food Type
@@ -100,11 +105,11 @@ const RestaurantDetails = () => {
                             <FormControl className="py-10 space-y-5" component={"fieldset"}>
 
                                 <RadioGroup onChange={handleFilter} name="food_type" value={foodType || "all"}>
-                                    {foodTypes.map((item)=> <FormControlLabel 
-                                    key={item.value}
-                                    value={item.value} 
+                                    {categories.map((item)=> <FormControlLabel 
+                                    key={item}
+                                    value={item} 
                                     control={<Radio/>} 
-                                    label={item.label} />)}
+                                    label={item} />)}
                                 </RadioGroup>
 
                             </FormControl>
@@ -114,7 +119,7 @@ const RestaurantDetails = () => {
                 </div>
 
                 <div className="space-y-5 lg:w-[80%] lg:pl-10">
-                    Menu
+                    {menu.map((item) => <MenuCard/>)}
                 </div>
 
             </section>
