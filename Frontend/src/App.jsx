@@ -5,7 +5,8 @@ import { darkTheme } from "./theme/DarkTheme";
 import Home from "./components/home/Home";
 import RestaurantDetails from "./components/restaurant/RestaurantDetails";
 import Cart from "./components/cart/Cart";
-
+import Profile from "./components/profile/Profile";
+import { CustomerRouter } from "./routers/CustomerRouter";
 
 function App() {
   console.log("Current Theme Palette:", darkTheme.palette);
@@ -15,10 +16,12 @@ function App() {
     
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      <Navbar/>
+      {/* <Navbar/> */}
       {/* <Home/> */}
       {/* <RestaurantDetails/> */}
-      <Cart/>
+      {/* <Cart/> */}
+      {/* <Profile/> */}
+      <CustomerRouter/>
 
     </ThemeProvider>
     
