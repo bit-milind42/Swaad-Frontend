@@ -31,11 +31,11 @@ export const ProfileNavigation = ({open,handleClose}) => {
         <div>
             <Drawer variant={isSmallScreen ? "temporary":"permanent "} 
             onClose={handleClose} open={true} anchor='left' 
-            sx={{ zIndex: 1,position:"sticky" }}>
+                    sx={{ zIndex: 1,position:"sticky" }}>
 
                 <div  className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl gap-8 pt-16">
                     {menu.map((item,i) => (<React.Fragment key={i}>
-                        <div onClick={()=>handleNavigate(item)} className="px-5 flex items-center space-x-5 cursor-pointer">
+                        <div onClick={()=>handleNavigate(item)} className="px-5 flex items-center space-x-5 cursor-pointer ">
                             {item.icon}
                             <span>
                                 
