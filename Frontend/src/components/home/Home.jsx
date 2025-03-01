@@ -148,6 +148,7 @@ import "./Home.css";
 import MultiItemCarousel from "./MultiitemCarousel";
 
 import RestaurantCard from "../restaurant/RestaurantCard";
+import { Auth } from "../auth/Auth";
 const restaurant = [1, 1, 1, 1, 1, 1];
 
 const Home = () => {
@@ -184,6 +185,7 @@ const Home = () => {
                     ))}
                 </div>
             </section>
+            
         </div>
     );
 };

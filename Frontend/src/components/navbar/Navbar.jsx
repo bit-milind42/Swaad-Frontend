@@ -83,8 +83,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { pink } from "@mui/material/colors"; // Fixed missing import
 import "./Navbar.css"
+import { Person } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+
 
 export const Navbar = () => {
+    const navigate=useNavigate()
     return (
         <div className="flex">
             <div className="w-full bg-[#e91e63] py-2 px-5
@@ -100,7 +104,10 @@ export const Navbar = () => {
                         <SearchIcon sx={{ fontSize: "1.5rem", color: "white" }} />
                     </IconButton>
                     <IconButton>
-                        <Avatar sx={{ bgcolor: "white", color: pink[400] }}>M</Avatar>
+                        {false? <Avatar sx={{ bgcolor: "white", color: pink[400] }}>M</Avatar>:
+                        <><IconButton onClick={()=>navigate("/account/login")}>
+                            <Person/>
+                            </IconButton></>}
                     </IconButton>
                     <IconButton>
                         <Badge color="blue" badgeContent={3}>
