@@ -7,20 +7,25 @@ import RestaurantDetails from "./components/restaurant/RestaurantDetails";
 import Cart from "./components/cart/Cart";
 import Profile from "./components/profile/Profile";
 import { CustomerRouter } from "./routers/CustomerRouter";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUser } from "./components/state/authentication/Action";
 
 function App() {
   console.log("Current Theme Palette:", darkTheme.palette);
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((store) => store);
 
+  useEffect(() => {
+    dispatch(getUser(auth.jwt || jwt));
+  },[auth.jwt]);
 
   return (
     
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      {/* <Navbar/> */}
-      {/* <Home/> */}
-      {/* <RestaurantDetails/> */}
-      {/* <Cart/> */}
-      {/* <Profile/> */}
+     
       <CustomerRouter/>
 
     </ThemeProvider>

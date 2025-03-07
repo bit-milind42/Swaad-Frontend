@@ -29,9 +29,17 @@ export const ProfileNavigation = ({open,handleClose}) => {
     
     return (
         <div>
-            <Drawer variant={isSmallScreen ? "temporary":"permanent "} 
-            onClose={handleClose} open={true} anchor='left' 
-                    sx={{ zIndex: 1,position:"sticky" }}>
+             <Drawer
+      variant={isSmallScreen ? 'temporary' : 'permanent'} // Switch between temporary and permanent
+      onClose={handleClose} // Close action when on small screens
+      open={true} // Only open on small screens for temporary variant
+      anchor='left' // Drawer will be on the left side
+      sx={{
+        zIndex: 1,
+        position: 'relative', // Ensure position is relative to its container
+        width: isSmallScreen ? '80%' : 240, // Set width for small screens and large screens
+        flexShrink: 0, // Prevent shrinking on permanent drawer
+      }}>
 
                 <div  className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl gap-8 pt-16">
                     {menu.map((item,i) => (<React.Fragment key={i}>

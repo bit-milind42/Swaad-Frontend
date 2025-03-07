@@ -46,7 +46,9 @@
 import { TextField, Typography, Button } from "@mui/material";
 import { Field, Formik, Form } from "formik";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../state/authentication/Action";
 
 const initialValues = {
     email: "",
@@ -56,9 +58,10 @@ const initialValues = {
 export const LoginForm = () => {
 
     const navigate=useNavigate()
+    const dispatch=useDispatch()
 
     const handleSubmit = (values) => {
-        console.log("Form Submitted:", values);
+        dispatch(loginUser({userData:values, navigate}))
     };
 
     return (
