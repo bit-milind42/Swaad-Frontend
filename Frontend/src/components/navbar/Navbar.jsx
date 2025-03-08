@@ -85,17 +85,28 @@ import { pink } from "@mui/material/colors"; // Fixed missing import
 import "./Navbar.css"
 import { Person } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 export const Navbar = () => {
-    const navigate=useNavigate()
+    const {auth}=useSelector((store)=>store)
+    const navigate=useNavigate();
+
+    const handleAvatarClick=()=>{
+        if(auth.user?.role === "ROLE_CUSTOMER"){
+            navigate("/my-profile")
+        }
+        else {
+            navigate("/admin/restaurant")
+        }
+    }
     return (
         <div className="flex">
             <div className="w-full bg-[#e91e63] py-2 px-5
              lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
                 {/* Left - Logo */}
                 <div className="flex items-center space-x-2">
-                    <span className="text-white text-2xl font-semibold"> Swaad</span>
+                    <span onClick={()=>navigate("/")} className="text-white text-2xl font-semibold"> Swaad</span>
                 </div>
 
                 {/* Right - Icons */}
@@ -104,10 +115,10 @@ export const Navbar = () => {
                         <SearchIcon sx={{ fontSize: "1.5rem", color: "white" }} />
                     </IconButton>
                     <IconButton>
-                        {false? <Avatar sx={{ bgcolor: "white", color: pink[400] }}>M</Avatar>:
-                        <><IconButton onClick={()=>navigate("/account/login")}>
+                        {auth.user? (<Avatar onClick={handleAvatarClick} sx={{ bgcolor: "white", color: pink[400] }}>{auth.user?.fullName[0].toUpperCase()}</Avatar>):
+                        (<IconButton onClick={()=>navigate("/account/login")}>
                             <Person/>
-                            </IconButton></>}
+                            </IconButton>)}
                     </IconButton>
                     <IconButton>
                         <Badge color="blue" badgeContent={3}>
