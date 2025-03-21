@@ -43,9 +43,11 @@ import { thunk } from "redux-thunk";
 // import authReducer from "./authentication/Reducer"; // ✅ Fixed Import
 import { authReducer } from "./authentication/Reducer";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
+import restaurantReducer from "./restaurant/Reducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    restaurant:restaurantReducer
 });
 
 // Load user & token from localStorage
