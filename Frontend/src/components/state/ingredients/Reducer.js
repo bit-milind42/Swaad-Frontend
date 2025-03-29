@@ -4,7 +4,7 @@ import {
     GET_INGREDIENTS, 
     GET_INGREDIENT_CATEGORY_SUCCESS, 
     UPDATE_STOCK, 
-} from "./ActionType"; 
+} from "./ActionTypes"; 
 
 const initialState = { 
     ingredients: [], 

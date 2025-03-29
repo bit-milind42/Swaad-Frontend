@@ -5,7 +5,7 @@ import {
     GET_RESTAURANTS_ORDER_REQUEST, 
     GET_RESTAURANTS_ORDER_SUCCESS, 
     GET_RESTAURANTS_ORDER_FAILURE, 
-} from "./ActionType.js"; 
+} from "./ActionTypes.js"; 
 
 const initialState = { 
     loading: false, 

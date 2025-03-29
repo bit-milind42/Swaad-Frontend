@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import MenuCard from "./MenuCard";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const categories=[
     "Pizza",
@@ -21,8 +23,15 @@ const foodTypes=[
 
 const menu=[1,1,1,1,1]
 
+
 const RestaurantDetails = () => {
     const [foodType,setFoodType]=useState("all")
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const jwt=localStorage.getItem("jwt")
+    const { auth,restaurant }= useSelector(store=>store)
+
+    const {id} =useParams();
 
     const handleFilter=()=>{
         console.log(e.target.value,e.target.name)

@@ -143,15 +143,33 @@
 
 
 
-import React from "react";
+import React, { use, useEffect } from "react";
 import "./Home.css";
 import MultiItemCarousel from "./MultiitemCarousel";
 
 import RestaurantCard from "../restaurant/RestaurantCard";
 import { Auth } from "../auth/Auth";
-const restaurant = [1, 1, 1, 1, 1, 1];
+import { useDispatch, useSelector } from "react-redux";
+import { getAllRestaurantsAction } from "../state/restaurant/Action";
+import { useNavigate } from "react-router-dom";
+const restaurants = [1, 1, 1, 1, 1, 1];
+
+
+
+
 
 const Home = () => {
+    const dispatch = useDispatch()
+    const jwt = localStorage.getItem("jwt")
+    const {restaurant}=useSelector(store=>store)
+    // const navigate=useNavigate()
+    console.log("restaurant", restaurant)
+
+    useEffect(()=>{
+        dispatch(getAllRestaurantsAction(jwt))
+    },[])
+
+    
     return (
         <div className="pb-10">
             {/* Banner Section */}
@@ -180,8 +198,8 @@ const Home = () => {
                     Order From Our Handpicked Favorites
                 </h1>
                 <div className="flex flex-wrap items-center justify-around gap-5">
-                    {restaurant.map((item, index) => (
-                        <RestaurantCard key={index} />
+                    {restaurant.restaurants.map((item, index) => (
+                        <RestaurantCard key={index} item={item}/>
                     ))}
                 </div>
             </section>

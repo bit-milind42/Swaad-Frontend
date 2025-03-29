@@ -52,12 +52,30 @@ import { Card, Chip, IconButton } from "@mui/material";
 import React from "react";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavorite } from "../state/authentication/Action";
+import { isPresentInFavorites } from "../config/logic";
 
-const RestaurantCard = () => {
+const RestaurantCard = ({item}) => {
     const isOpen = true; // Mock status for testing
     const isFavorite = true; // Mock favorite for testing
 
     console.log("Restaurant Status:", isOpen); // Debug log
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const jwt=localStorage.getItem("jwt")
+    const { auth }= useSelector(store=>store)
+
+    const handleAddToFavorite=()=>{
+        dispatch(addToFavorite({restaurantId:item.id,jwt}))
+    }
+    const handleNaviagteToRestaurant=()=>{
+        if(item.isOpen){
+            navigate(`/restaurant/${item.address.city}/${item.name}./${item.id}`)
+        }
+    }
 
     return (
         <Card 
@@ -67,7 +85,7 @@ const RestaurantCard = () => {
             <div className={`${isOpen ? 'cursor-pointer' : "cursor-not-allowed"} relative`}>
                 <img
                     className="w-full h-[10rem] rounded-t-md object-cover"
-                    src="https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg"
+                    src={item.images[2]}
                     alt="Restaurant"
                 />
 
@@ -78,24 +96,25 @@ const RestaurantCard = () => {
                         position: "absolute",
                         top: "8px",
                         left: "8px",
-                        backgroundColor: isOpen ? "green" : "red",
+                        backgroundColor: item.isOpen ? "green" : "red",
                         color: "white",
                     }}
-                    label={isOpen ? "Open" : "Closed"}
+                    label={item.isOpen ? "Open" : "Closed"}
                 />
             </div>
 
             {/* Text & Action Section */}
             <div className="p-4 lg:flex w-full justify-between items-center">
                 <div className="space-y-1">
-                    <p className="font-semibold text-lg">Indian FAST Food</p>
+                    <p onClick={handleNaviagteToRestaurant} className="font-semibold text-lg cursor-pointer">{item.name}</p>
                     <p className="text-gray-500 text-sm">
-                        Craving it all? Dive into our global flavors.
+                        {item.description}
                     </p>
                 </div>
 
-                <IconButton>
-                    {isFavorite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
+                <IconButton onClick={handleAddToFavorite}>
+                    {/* {isFavorite ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />} */}
+                    {isPresentInFavorites(auth.favorites,item)?<FavoriteIcon/>:<FavoriteBorderIcon></FavoriteBorderIcon>}
                 </IconButton>
             </div>
         </Card>

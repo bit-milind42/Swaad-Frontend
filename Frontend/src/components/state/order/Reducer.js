@@ -1,5 +1,5 @@
 import { GET_USER_FAILURE } from "../authentication/Action";
-import { GET_USERS_ORDERS_FAILURE } from "./ActionTypes";
+import { GET_USERS_ORDERS_FAILURE, GET_USERS_ORDERS_REQUEST, GET_USERS_ORDERS_SUCCESS } from "./ActionTypes";
 
 const initialState ={
     loading:false,
