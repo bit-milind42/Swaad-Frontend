@@ -1,18 +1,12 @@
 import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import MenuCard from "./MenuCard";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const categories=[
-    "Pizza",
-    "Momos",
-    "Burger",
-    "Ice-Cream",
-    "Dosa"
-]
+
 
 const foodTypes=[
     {label:"All", value:"all"},
@@ -36,6 +30,13 @@ const RestaurantDetails = () => {
     const handleFilter=()=>{
         console.log(e.target.value,e.target.name)
     }
+    console.log("restaurant",restaurant)
+
+    useEffect(() => {
+        dispatch(getRestaurantById({jwt,restaurantId:id}))
+        dispatch(getRestaurantsCategory({jwt,restaurantId:id}))
+        dispatch(getMenuItemsByRestaurantId({jwt,restaurantId:id,vegetarain:false,nonveg:false,seasonal:false,foodCategory:""}))
+    },[])
 
     return (
         <div className="px-5 lg:px-20">
@@ -45,12 +46,12 @@ const RestaurantDetails = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
 
-                            <img className="w-full h-[40vh]" src="https://cdn.pixabay.com/photo/2016/11/21/16/02/outdoor-dining-1846137_1280.jpg" alt=""/>
+                            <img className="w-full h-[40vh]" src={restaurant.restaurant?.images[0]} alt=""/>
 
                         </Grid>
                         <Grid item xs={12} lg={6}>
 
-                            <img className="w-full h-[40vh]" src="https://cdn.pixabay.com/photo/2020/09/17/12/41/cafe-5579069_1280.jpg" alt=""/>
+                            <img className="w-full h-[40vh]" src={restaurant.restaurant?.images[1]} alt=""/>
 
                         </Grid>
 
@@ -63,9 +64,8 @@ const RestaurantDetails = () => {
                     </Grid>
                 </div>
                 <div className="pt-3 pb-5">
-                    <h1 className="text-4xl font-semibold">Indian Fast Food</h1>
-                    <p className="text-gray-500 mt-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
-                         corrupti in voluptatibus quidem mollitia accusantium possimus ea optio porro blanditiis sunt incidunt itaque praesentium, quis ab totam, maiores eaque similique?</p>
+                    <h1 className="text-4xl font-semibold">{restaurant.restaurant?.name}</h1>
+                    <p className="text-gray-500 mt-1">{restaurant.restaurant?.description}</p>
                     <div className="space-y-3 mt-3">
                         <p className="text-gray-500 flex items-center gap-3">
                             <LocationOnIcon/>
@@ -114,11 +114,11 @@ const RestaurantDetails = () => {
                             <FormControl className="py-10 space-y-5" component={"fieldset"}>
 
                                 <RadioGroup onChange={handleFilter} name="food_type" value={foodType || "all"}>
-                                    {categories.map((item)=> <FormControlLabel 
+                                    {restaurant.categories.map((item)=> <FormControlLabel 
                                     key={item}
                                     value={item} 
                                     control={<Radio/>} 
-                                    label={item} />)}
+                                    label={item.name} />)}
                                 </RadioGroup>
 
                             </FormControl>

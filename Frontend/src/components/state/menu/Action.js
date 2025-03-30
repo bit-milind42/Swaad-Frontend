@@ -53,6 +53,7 @@ export const getMenuItemsByRestaurantId = ({reqData}) => {
 
         }
         catch (error){
+            console.log("catch error ",error);
             dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE,payload:error});
         }
     };
