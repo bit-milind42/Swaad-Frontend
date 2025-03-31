@@ -2,7 +2,7 @@ import { api } from "../../config/api";
 import { CREATE_ORDER_FAILURE, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, GET_USERS_ORDERS_FAILURE, GET_USERS_ORDERS_REQUEST, GET_USERS_ORDERS_SUCCESS } from "./ActionTypes";
 
 
-export const createurger = (reqData) => {
+export const createorder = (reqData) => {
     return async (dispatch) => { 
     dispatch({type:CREATE_ORDER_REQUEST}); 
         try { 

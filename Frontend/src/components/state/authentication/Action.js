@@ -661,7 +661,7 @@ export const getUser = () => async (dispatch) => {
 
     } catch (error) {
         dispatch({ type: GET_USER_FAILURE, payload: error.response?.data?.message || "Failed to fetch user" });
-        console.error("Error fetching user profile:", error);
+        // console.error("Error fetching user profile:", error);
     }
 };
 

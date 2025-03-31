@@ -152,6 +152,7 @@ import { Auth } from "../auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRestaurantsAction } from "../state/restaurant/Action";
 import { useNavigate } from "react-router-dom";
+import { findCart } from "../state/cart/Action";
 const restaurants = [1, 1, 1, 1, 1, 1];
 
 
@@ -162,11 +163,12 @@ const Home = () => {
     const dispatch = useDispatch()
     const jwt = localStorage.getItem("jwt")
     const {restaurant}=useSelector(store=>store)
-    // const navigate=useNavigate()
+    const navigate=useNavigate()
     console.log("restaurant", restaurant)
 
     useEffect(()=>{
         dispatch(getAllRestaurantsAction(jwt))
+        
     },[])
 
     

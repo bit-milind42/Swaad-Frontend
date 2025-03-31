@@ -23,11 +23,18 @@ const RestaurantDetails = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const jwt=localStorage.getItem("jwt")
-    const { auth,restaurant }= useSelector(store=>store)
+    const { auth,restaurant,menu }= useSelector(store=>store);
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     const {id} =useParams();
 
-    const handleFilter=()=>{
+    const handleFilter=(e,value)=>{
+        setFoodType(e.target.value)
+        console.log(e.target.value,e.target.name,value)
+    }
+
+    const handleFilterCategory=(e)=>{
+        setSelectedCategory(value)
         console.log(e.target.value,e.target.name)
     }
     console.log("restaurant",restaurant)
@@ -35,8 +42,12 @@ const RestaurantDetails = () => {
     useEffect(() => {
         dispatch(getRestaurantById({jwt,restaurantId:id}))
         dispatch(getRestaurantsCategory({jwt,restaurantId:id}))
-        dispatch(getMenuItemsByRestaurantId({jwt,restaurantId:id,vegetarain:false,nonveg:false,seasonal:false,foodCategory:""}))
-    },[])
+    },[]);
+
+    useEffect(()=>{
+        dispatch(getMenuItemsByRestaurantId({jwt,restaurantId:id,vegetarain:foodType==="vegetarian",nonveg:foodType==="non_vegetarian",seasonal:foodType==="seasonal",foodCategory:selectedCategory}))
+
+    },[selectedCategory,foodType])
 
     return (
         <div className="px-5 lg:px-20">
@@ -113,10 +124,12 @@ const RestaurantDetails = () => {
 
                             <FormControl className="py-10 space-y-5" component={"fieldset"}>
 
-                                <RadioGroup onChange={handleFilter} name="food_type" value={foodType || "all"}>
+                                <RadioGroup onChange={handleFilterCategory} name="food_category"
+                                 value={selectedCategory}
+                                 >
                                     {restaurant.categories.map((item)=> <FormControlLabel 
                                     key={item}
-                                    value={item} 
+                                    value={item.name} 
                                     control={<Radio/>} 
                                     label={item.name} />)}
                                 </RadioGroup>
@@ -128,7 +141,7 @@ const RestaurantDetails = () => {
                 </div>
 
                 <div className="space-y-5 lg:w-[80%] lg:pl-10">
-                    {menu.map((item) => <MenuCard/>)}
+                    {menu.menuItems.map((item) => <MenuCard item={item}/>)}
                 </div>
 
             </section>

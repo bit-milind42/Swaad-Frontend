@@ -1542,7 +1542,7 @@ import { LOGOUT, getUser } from "../state/authentication/Action";  // Import fro
 import "./Navbar.css";
 
 export const Navbar = () => {
-    const auth = useSelector((state) => state.auth);
+    const {cart,auth }= useSelector((state) => state.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -1616,7 +1616,9 @@ export const Navbar = () => {
                     )}
 
                     <IconButton onClick={() => navigate("/cart")}>
-                        <Badge color="primary" badgeContent={auth?.cartItems?.length > 0 ? auth.cartItems.length : null}>
+                        {/* <Badge color="primary" badgeContent={cart.cart?.items.length}> */}
+                        <Badge color="primary" badgeContent={cart?.items?.length || 0}>
+
                             <ShoppingCartIcon sx={{ fontSize: "1.5rem", color: "white" }} />
                         </Badge>
                     </IconButton>

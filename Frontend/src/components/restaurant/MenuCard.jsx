@@ -1,6 +1,9 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, FormControlLabel, FormGroup, Typography } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import React from "react";
+import React, { useState } from "react";
+import { categorizeIngredients } from "../util/categrizeIngredients";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../state/cart/Action";
 
 // const ingredients=[
 //     {
@@ -30,11 +33,35 @@ const demo=[
     
 ]
 
-const MenuCard = () => {
-    const handleCheckBoxChange=(value)=>{
-        console.log("value")
+const MenuCard = ({item}) => {
+    const [selectedIngredients,setSelectedIngredients] = useState([]);
+    const dispatch =useDispatch();
+    const handleCheckBoxChange=(itemName)=>{
+        console.log("value",itemName);
+        if(selectedIngredients.includes(itemName)){
+            setSelectedIngredients(
+                selectedIngredients.filter((item) => item !== itemName)
+            );
+        }
+        else{
+            setSelectedIngredients([...selectedIngredients, itemName]);
+        }
 
-    }
+    };
+    const handleAddItemToCart=(e)=>{
+        e.preventDefault();
+        const reqData = {
+            token: localStorage.getItem("jwt"),
+            cartItem: { 
+                foodId: item.id,
+                quantity:1,
+                ingredients: selectedIngredients,
+            },
+        };
+        dispatch(addItemToCart(reqData))
+        console.log("req data ",reqData)
+    };
+
     return (
         <Accordion>
         <AccordionSummary
@@ -45,12 +72,12 @@ const MenuCard = () => {
             <div className="lg:flex items-center justify-between">
                 <div className="lg:flex items-center lg:gap-5">
                     <img className="w-[7rem] h-[7rem] object-cover" 
-                    src="https://cdn.pixabay.com/photo/2024/02/06/10/53/ai-generated-8556731_1280.jpg" alt=""/>
+                    src={item.images[0]} alt=""/>
 
                     <div className="space-y-1 lg:space-y-5 lg:max-w-2xl">
-                        <p className="font-semibold text-xl">Burger</p>
-                        <p>₹499</p>
-                        <p className="text-gray-400">The ultimate veggie burger you will love! The patties are so crisp, packed with loads of veggies & filled with plenty of aromatic spices.</p>
+                        <p className="font-semibold text-xl">{item.name}</p>
+                        <p>₹{item.price}</p>
+                        <p className="text-gray-400">{item.description}</p>
 
                     </div>
                 </div>
@@ -59,16 +86,17 @@ const MenuCard = () => {
 
         </AccordionSummary>
         <AccordionDetails>
-          <form>
+          <form onSubmit={handleAddItemToCart}>
             <div className="flex gap-5 flex-wrap">
                 {
 
-                    demo.map((item)=>
+                    Object.keys(categorizeIngredients(item.ingredients)).map((category)=>
                         <div>
-                            <p>{item.category}</p>
+                            <p>{category}</p>
                             <FormGroup>
-                            {item.ingredients.map((item) => <FormControlLabel control={<Checkbox
-                            onChange={()=>handleCheckBoxChange(item)} />} label={item} />)}
+                            {categorizeIngredients(item.ingredients)[category].map((item) =>( <FormControlLabel key={item.id} control={<Checkbox
+                            onChange={()=>handleCheckBoxChange(item.name)} />} 
+                            label={item.name} />))}
                             
                             </FormGroup>
                         </div>
@@ -77,7 +105,7 @@ const MenuCard = () => {
                 }
             </div>
             <div className="pt-5">
-                <Button variant="contained" disabled={false} type="submit">
+                <Button  variant="contained" disabled={false} type="submit">
                     {true?"Add to Cart" :"Out Of Stock" }
                 </Button>
             </div>
