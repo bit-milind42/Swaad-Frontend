@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./components/state/authentication/Action";
 import { findCart } from "./components/state/cart/Action";
+import Routers from "./routers/Routers";
 
 function App() {
   console.log("Current Theme Palette:", darkTheme.palette);
@@ -28,7 +29,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
      
-      <CustomerRouter/>
+      <Routers/>
 
     </ThemeProvider>
     
