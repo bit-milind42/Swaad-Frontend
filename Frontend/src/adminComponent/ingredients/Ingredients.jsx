@@ -1,6 +1,7 @@
 import React from "react";
 import IngredientTable from "./IngredientTable";
 import IngredientCategoryTable from "./IngredientCategoryTable";
+import { Grid } from "@mui/material";
 
 export const Ingredients=()=>{
     return (
