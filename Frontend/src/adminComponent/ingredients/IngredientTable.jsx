@@ -2,6 +2,7 @@ import { Box, Card, CardHeader, IconButton, Modal, Paper, Table, TableBody, Tabl
 import React from "react";
 import CreateIcon from '@mui/icons-material/Create';
 import CreateIngredientForm from "./CreateIngredientForm";
+import { useDispatch, useSelector } from "react-redux";
 
 const orders=[1,1,1,1,1,1]
 const style = {
@@ -17,6 +18,9 @@ const style = {
   };
 
 export const IngredientTable=()=>{
+    const dispatch=useDispatch();
+    const jwt=localStorage.getItem("jwt");
+    const {restaurant,ingredients}=useSelector(store=>store)
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

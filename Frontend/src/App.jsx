@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { getUser } from "./components/state/authentication/Action";
 import { findCart } from "./components/state/cart/Action";
 import Routers from "./routers/Routers";
+import { getRestaurantByUserId } from "./components/state/restaurant/Action";
 
 function App() {
   console.log("Current Theme Palette:", darkTheme.palette);
@@ -23,6 +24,10 @@ function App() {
     dispatch(getUser(auth.jwt || jwt));
     dispatch(findCart(jwt));
   },[auth.jwt]);
+
+  useEffect(()=>{
+    dispatch(getRestaurantByUserId(auth.jwt || jwt));
+  },[auth.user])
 
   return (
     
