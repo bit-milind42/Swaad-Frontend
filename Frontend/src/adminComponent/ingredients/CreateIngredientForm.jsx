@@ -10,12 +10,15 @@ const CreateIngredientForm =()=>{
 
     const dispatch=useDispatch();
     const jwt=localStorage.getItem("jwt");
-    const [formData,setFormData] = useState({name:"",categoryId:""})
+    const [formData,setFormData] = useState({ingredientName:"",categoryId:""})
     const handleSubmit=(e)=>{
         e.preventDefault(); 
         const data={
-            ...formData,
             restaurantId: restaurant.usersRestaurant.id,
+            ingredientName: formData.ingredientName,  // Change 'name' to 'ingredientName'
+            categoryId: formData.categoryId
+            // ...formData,
+            // restaurantId: restaurant.usersRestaurant.id,
             // ingredientCategoryId: formData.ingredientCategoryId
         };
         dispatch(createIngredient({data,jwt}))
@@ -35,12 +38,12 @@ const CreateIngredientForm =()=>{
                 <h1 className="text-gray-400 text-center text-xl pb-10">Create Ingredient</h1>
                 <form className="space-y-5" onSubmit={handleSubmit}>
                     <TextField fullWidth
-                        id="name"
-                        name="name"
-                        label="Name"
+                        id="ingredientName"
+                        name="ingredientName"
+                        label="Ingredient Name"
                         variant="outlined"
                         onChange={handleInputChange}
-                        value={formData.name}>
+                        value={formData.ingredientName}>
 
                     </TextField>
                     <FormControl fullWidth>

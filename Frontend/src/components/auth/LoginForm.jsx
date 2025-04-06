@@ -195,7 +195,8 @@ const initialValues = {
 export const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { auth } = useSelector((store) => store); // ✅ Get user authentication state
+    // const { auth } = useSelector((store) => store); // ✅ Get user authentication state
+    const auth = useSelector((store) => store.auth);
 
     // ✅ Redirect if user is already logged in
     useEffect(() => {

@@ -1,8 +1,9 @@
-import { Box, Card, CardHeader, IconButton, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import React from "react";
+import { Box, Button, Card, CardHeader, IconButton, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import React, { useEffect } from "react";
 import CreateIcon from '@mui/icons-material/Create';
 import CreateIngredientForm from "./CreateIngredientForm";
 import { useDispatch, useSelector } from "react-redux";
+import { getIngredientsOfRestaurant, updateStockOfIngredient } from "../../components/state/ingredients/Action";
 
 const orders=[1,1,1,1,1,1]
 const style = {
@@ -20,10 +21,21 @@ const style = {
 export const IngredientTable=()=>{
     const dispatch=useDispatch();
     const jwt=localStorage.getItem("jwt");
-    const {restaurant,ingredients}=useSelector(store=>store)
+    // const {restaurant,ingredients}=useSelector(store=>store)
+    const restaurant = useSelector((store) => store.restaurant);
+    const { ingredients, category } = useSelector((store) => store.ingredients);
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    useEffect(()=>{
+        dispatch(getIngredientsOfRestaurant({jwt,id:restaurant.usersRestaurant.id}))
+    },[])
+
+    const handleUpdateStoke=(id)=>{
+        dispatch(updateStockOfIngredient({id,jwt}))
+    }
 
     return (
         <div>
@@ -51,18 +63,26 @@ export const IngredientTable=()=>{
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                            {orders.map((row) => (
+                            {/* {ingredients.ingredients.map((item) => ( */}
+                            {/* {Array.isArray(ingredients) && ingredients.map((item) => ( */}
+
+                            {ingredients.map((item) => (
+                                 
+
+
                                 <TableRow
-                                key={row.name}
+                                key={item.id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                 <TableCell component="th" scope="row">
-                                    {1}
+                                    {item.id}
                                 </TableCell>
-                                <TableCell align="right">{"image"}</TableCell>
+                                <TableCell align="right">{item.name}</TableCell>
                                 
-                                <TableCell align="right">{"Price"}</TableCell>
-                                <TableCell align="right">{"Pizza"}</TableCell>
+                                <TableCell align="right">{item.category.name}</TableCell>
+                                <TableCell align="right"><Button onClick={()=>handleUpdateStoke(item.id)}>
+                                    {item.inStock?"in stock" : "out of stock"}
+                                    </Button></TableCell>
 
                                 </TableRow>
                             ))}

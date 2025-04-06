@@ -651,7 +651,7 @@ export const getUser = () => async (dispatch) => {
         const jwt = localStorage.getItem("jwt");
         if (!jwt) throw new Error("No JWT token found");
 
-        const { data } = await api.get(`/users/profile`, {
+        const { data } = await api.get(`/api/users/profile`, {
             headers: { Authorization: `Bearer ${jwt}` }
         });
         console.log("Fetched User Data:", data);
