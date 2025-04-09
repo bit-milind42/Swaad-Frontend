@@ -18,8 +18,11 @@ export const CartItem = ({item}) => {
         if(value === -1 && item.quantity===1){
             handleRemoveCartItem()
         }
-        const data={CartItemId:item.id,quantity:item.quantity+value}
-        dispatch(updateCartItem({item,jwt}))
+        // const data={CartItemId:item.id,quantity:item.quantity+value}
+        // dispatch(updateCartItem({item,jwt}))
+        const data = { cartItemId: item.id, quantity: item.quantity + value }; // ✅ keys must match backend
+        dispatch(updateCartItem({ data, jwt }));
+
     }
     const handleRemoveCartItem=()=>{
         dispatch(removeCartItem({cartItemId:item.id,jwt:auth.jwt || jwt}))

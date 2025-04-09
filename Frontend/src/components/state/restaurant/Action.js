@@ -1,23 +1,5 @@
 import { api } from "../../config/api";
 
-// import {
-//     createRestaurantFailure, 
-//     createRestaurantRequest, 
-//     createRestaurantSuccess, 
-//     deleteRestaurantFailure, 
-//     deleteRestaurantRequest, 
-//     deleteRestaurantSuccess, 
-//     getAllRestaurantsFailure, 
-//     getAllRestaurantsRequest, 
-//     getAllRestaurantsSuccess, 
-//     getRestaurantByIdFailure, 
-//     getRestaurantByIdRequest,
-//     getRestaurantBuIdSuccess,
-//     updateRestaurantFailure,
-//     updateRestaurantRequest,
-//     updateRestaurantSuccess,
-// } from "./ActionTypes";
-
 
 import { 
     CREATE_CATEGORY_FAILURE, 

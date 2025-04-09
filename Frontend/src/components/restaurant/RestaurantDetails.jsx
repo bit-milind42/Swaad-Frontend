@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import MenuCard from "./MenuCard";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { getRestaurantById, getRestaurantsCategory } from "../state/restaurant/Action";
+import { getMenuItemsByRestaurantId } from "../state/menu/Action";
 
 
 
@@ -34,20 +36,42 @@ const RestaurantDetails = () => {
     }
 
     const handleFilterCategory=(e)=>{
-        setSelectedCategory(value)
+        setSelectedCategory(e.target.value)
         console.log(e.target.value,e.target.name)
     }
     console.log("restaurant",restaurant)
 
+    // useEffect(() => {
+    //     dispatch(getRestaurantById({jwt,restaurantId:id}))
+    //     dispatch(getRestaurantsCategory({jwt,restaurantId:id}))
+    // },[]);
+
     useEffect(() => {
-        dispatch(getRestaurantById({jwt,restaurantId:id}))
-        dispatch(getRestaurantsCategory({jwt,restaurantId:id}))
-    },[]);
+        if (id && jwt) {
+          dispatch(getRestaurantById({ jwt, restaurantId: id }));
+          dispatch(getRestaurantsCategory({ jwt, restaurantId: id }));
+        }
+      }, [id, jwt]);
+      
 
-    useEffect(()=>{
-        dispatch(getMenuItemsByRestaurantId({jwt,restaurantId:id,vegetarain:foodType==="vegetarian",nonveg:foodType==="non_vegetarian",seasonal:foodType==="seasonal",foodCategory:selectedCategory}))
+    // useEffect(()=>{
+    //     dispatch(getMenuItemsByRestaurantId({jwt,restaurantId:id,vegetarain:foodType==="vegetarian",nonveg:foodType==="non_vegetarian",seasonal:foodType==="seasonal",foodCategory:selectedCategory}))
 
-    },[selectedCategory,foodType])
+    // },[selectedCategory,foodType])
+
+    useEffect(() => {
+        if (id && jwt) {
+            dispatch(getMenuItemsByRestaurantId({
+                jwt,
+                restaurantId: id,
+                vegetarain: foodType === "vegetarian",
+                nonveg: foodType === "non_vegetarian",
+                seasonal: foodType === "seasonal",
+                foodCategory: selectedCategory
+            }));
+        }
+    }, [selectedCategory, foodType, id, jwt]);
+    
 
     return (
         <div className="px-5 lg:px-20">
@@ -127,8 +151,9 @@ const RestaurantDetails = () => {
                                 <RadioGroup onChange={handleFilterCategory} name="food_category"
                                  value={selectedCategory}
                                  >
-                                    {restaurant.categories.map((item)=> <FormControlLabel 
-                                    key={item}
+                                    {restaurant.categories?.map((item,index)=> <FormControlLabel 
+                                    // key={item}
+                                    key={item.id || item.name || index}
                                     value={item.name} 
                                     control={<Radio/>} 
                                     label={item.name} />)}

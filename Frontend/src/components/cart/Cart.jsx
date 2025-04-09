@@ -49,16 +49,23 @@ const Cart =()=>{
     const [open, setOpen] = React.useState(false);
 
     const {cart}=useSelector(store=>store);
+    const { auth } = useSelector(store => store);
     const dispatch=useDispatch();
+    const itemTotal = cart.cartItems?.reduce((acc, item) => acc + (item.totalPrice || 0), 0) || 0;
+
     
     const handleClose = () => {
         setOpen(false);
     };
     const handleSubmit=(values)=>{
+        if (!cart?.cartItems?.length || !cart.cartItems[0].food?.restaurant?.id) {
+            alert("Cart is empty or invalid!");
+            return;
+        }
         const data ={
             jwt:localStorage.getItem("jwt"),
             order:{
-                restaurantId:cart.cartItems[0].food?.restaurant.id,
+                restaurantId:cart.cartItems[0].food.restaurant.id,
                 deliveryAddress:{
                     fullName:auth.user?.fullName, 
                     streetAddress:values.streetAddress, 
@@ -74,11 +81,14 @@ const Cart =()=>{
     }
     // const ErrorMessage=()=>{}
 
+
     return (
         <>
             <main className ='lg:flex justify-between'>
                 <section className="lg:w-[30%] space-y-6 lg:min-h-screen pt-10">
-                    {cart.cartItems.map((item)=> (<CartItem item={item}/>))}
+                    {/* {cart.cartItems.map((item)=> (<CartItem item={item}/>))} */}
+                    {cart?.cartItems?.length > 0 && cart.cartItems.map((item) => <CartItem key={item.id} item={item} />)}
+
                     <Divider/>
                 <div className="billDetails px-5 text-sm">
                     <p className="font-extralight py-5">
@@ -87,7 +97,9 @@ const Cart =()=>{
                     <div className="space-y-3" >
                         <div className="flex justify-between text-gray-400">
                             <p>Item Total</p>
-                            <p> ₹{cart.cart?.total}</p>
+                            {/* <p> ₹{(cart.cart?.total || 0)}</p> */}
+                            <p> ₹{itemTotal}</p>
+
                         </div>
 
                         <div className="flex justify-between text-gray-400">
@@ -104,7 +116,9 @@ const Cart =()=>{
                     </div>
                     <div className="flex justify-between text-gray-400">
                         <p>Total pay</p>
-                        <p>₹{cart.cart?.total+33+21}</p>
+                        {/* <p>₹{(cart.cart?.total || 0)+33+21}</p> */}
+                        <p>₹{itemTotal + 33 + 21}</p>
+
                     </div>                   
                 </div>
 
