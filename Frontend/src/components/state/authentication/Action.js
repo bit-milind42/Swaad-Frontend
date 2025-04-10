@@ -672,7 +672,7 @@ export const addToFavorite = ({ restaurantId }) => async (dispatch) => {
         const jwt = localStorage.getItem("jwt");
         if (!jwt) throw new Error("No JWT token found");
 
-        const { data } = await api.put(`/auth/restaurants/${restaurantId}/add-favorites`, {}, {
+        const { data } = await api.put(`/api/restaurants/${restaurantId}/add-favorites`, {}, {
             headers: { Authorization: `Bearer ${jwt}` }
         });
 

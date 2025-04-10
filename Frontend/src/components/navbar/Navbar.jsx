@@ -1531,23 +1531,230 @@
 
 
 
+// import React, { useEffect } from "react";
+// import { Badge, IconButton } from "@mui/material";
+// import SearchIcon from "@mui/icons-material/Search";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import { Person } from "@mui/icons-material";
+// import { useNavigate } from "react-router-dom";
+// import { useSelector, useDispatch } from "react-redux";
+// import { LOGOUT, getUser } from "../state/authentication/Action";  // Import from Action.js instead of ActionType.js
+// import "./Navbar.css";
+
+// export const Navbar = () => {
+//     // const {cart,auth }= useSelector((state) => state.auth);
+//     const cart = useSelector((state) => state.cart);
+//     const auth = useSelector((state) => state.auth);
+
+//     const navigate = useNavigate();
+//     const dispatch = useDispatch();
+
+    
+
+//     useEffect(() => {
+//         if (auth?.jwt && !auth?.user) {
+//             dispatch(getUser());
+//         }
+//     }, [auth?.jwt, auth?.user, dispatch]);
+    
+
+//     const isLoggedIn = Boolean(auth?.jwt);
+
+//     const handleLogout = () => {
+//         localStorage.clear();
+//         dispatch({ type: LOGOUT });
+//         navigate("/account/login");
+//     };
+
+//     const handleProfileClick = () => {
+//         navigate("/my-profile");
+//     };
+
+//     // Get first letter of user's name for avatar
+//     const getAvatarText = () => {
+//         if (auth?.user?.fullName) {
+//             return auth.user.fullName[0].toUpperCase();
+//         }
+//         return "U";
+//     };
+
+//     return (
+//         <nav className="navbar-container">
+//             <div className="w-full bg-[#e91e63] py-2 px-5 lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
+//                 {/* Left - Logo */}
+//                 <div className="flex items-center space-x-2">
+//                     <span 
+//                         onClick={() => navigate("/")} 
+//                         className="text-white text-2xl font-semibold cursor-pointer">
+//                         Swaad
+//                     </span>
+//                 </div>
+
+//                 {/* Right - Icons */}
+//                 <div className="flex items-center space-x-2 lg:space-x-10">
+//                     <IconButton>
+//                         <SearchIcon sx={{ fontSize: "1.5rem", color: "white" }} />
+//                     </IconButton>
+
+//                     {isLoggedIn ? (
+//                         <>
+//                             {/* Avatar displaying first letter of username */}
+//                             <div className="flex items-center space-x-4">
+//                                 <button 
+//                                     onClick={handleProfileClick} 
+//                                     className="w-8 h-8 flex items-center justify-center text-white bg-transparent border border-white rounded-full hover:bg-white hover:text-[#e91e63] transition">
+//                                     {getAvatarText()}
+//                                 </button>
+
+//                             </div>
+//                         </>
+//                     ) : (
+//                         <IconButton onClick={() => navigate("/account/login")}>
+//                             <Person sx={{ fontSize: "1.5rem", color: "white" }} />
+//                         </IconButton>
+//                     )}
+
+//                     <IconButton onClick={() => navigate("/cart")}>
+//                         {/* <Badge color="primary" badgeContent={cart.cart?.items.length}> */}
+//                         <Badge color="primary" badgeContent={cart?.items?.length || 0}>
+
+//                             <ShoppingCartIcon sx={{ fontSize: "1.5rem", color: "white" }} />
+//                         </Badge>
+//                     </IconButton>
+//                 </div>
+//             </div>
+//         </nav>
+//     );
+// };
+
+// export default Navbar;
+
+
+
+
+
+
+
+// import React, { useEffect } from "react";
+// import { Badge, IconButton } from "@mui/material";
+// import SearchIcon from "@mui/icons-material/Search";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import { Person } from "@mui/icons-material";
+// import { useNavigate } from "react-router-dom";
+// import { useSelector, useDispatch } from "react-redux";
+// import { LOGOUT, getUser } from "../state/authentication/Action";  // Import from Action.js instead of ActionType.js
+// import "./Navbar.css";
+
+// export const Navbar = () => {
+//     // const {cart,auth }= useSelector((state) => state.auth);
+//     const cart = useSelector((state) => state.cart);
+//     const auth = useSelector((state) => state.auth);
+
+//     const navigate = useNavigate();
+//     const dispatch = useDispatch();
+
+    
+
+//     useEffect(() => {
+//         if (auth?.jwt && !auth?.user) {
+//             dispatch(getUser());
+//         }
+//     }, [auth?.jwt, auth?.user, dispatch]);
+    
+
+//     const isLoggedIn = Boolean(auth?.jwt);
+
+//     const handleLogout = () => {
+//         localStorage.clear();
+//         dispatch({ type: LOGOUT });
+//         navigate("/account/login");
+//     };
+
+//     const handleProfileClick = () => {
+//         navigate("/my-profile");
+//     };
+
+//     // Get first letter of user's name for avatar
+//     const getAvatarText = () => {
+//         if (auth?.user?.fullName) {
+//             return auth.user.fullName[0].toUpperCase();
+//         }
+//         return "U";
+//     };
+
+//     return (
+//         <nav className="navbar-container">
+//             <div className="w-full bg-[#e91e63] py-2 px-5 lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
+//                 {/* Left - Logo */}
+//                 <div className="flex items-center space-x-2">
+//                     <span 
+//                         onClick={() => navigate("/")} 
+//                         className="text-white text-2xl font-semibold cursor-pointer">
+//                         Swaad
+//                     </span>
+//                 </div>
+
+//                 {/* Right - Icons */}
+//                 <div className="flex items-center space-x-2 lg:space-x-10">
+//                     <IconButton>
+//                         <SearchIcon sx={{ fontSize: "1.5rem", color: "white" }} />
+//                     </IconButton>
+
+//                     {isLoggedIn ? (
+//                         <>
+//                             {/* Avatar displaying first letter of username */}
+//                             <div className="flex items-center space-x-4">
+//                                 <button 
+//                                     onClick={handleProfileClick} 
+//                                     className="w-8 h-8 flex items-center justify-center text-white bg-transparent border border-white rounded-full hover:bg-white hover:text-[#e91e63] transition">
+//                                     {getAvatarText()}
+//                                 </button>
+
+//                             </div>
+//                         </>
+//                     ) : (
+//                         <IconButton onClick={() => navigate("/account/login")}>
+//                             <Person sx={{ fontSize: "1.5rem", color: "white" }} />
+//                         </IconButton>
+//                     )}
+
+//                     <IconButton onClick={() => navigate("/cart")}>
+//                         {/* <Badge color="primary" badgeContent={cart.cart?.items.length}> */}
+//                         <Badge color="primary" badgeContent={cart?.items?.length || 0}>
+
+//                             <ShoppingCartIcon sx={{ fontSize: "1.5rem", color: "white" }} />
+//                         </Badge>
+//                     </IconButton>
+//                 </div>
+//             </div>
+//         </nav>
+//     );
+// };
+
+// export default Navbar;
+
+
+
+
+
+
 import React, { useEffect } from "react";
-import { Badge, IconButton } from "@mui/material";
+import { Badge, IconButton, Avatar, Tooltip } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Person } from "@mui/icons-material";
+import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { LOGOUT, getUser } from "../state/authentication/Action";  // Import from Action.js instead of ActionType.js
+import { LOGOUT, getUser } from "../state/authentication/Action";
 import "./Navbar.css";
 
 export const Navbar = () => {
-    const {cart,auth }= useSelector((state) => state.auth);
+    const cart = useSelector((state) => state.cart);
+    const auth = useSelector((state) => state.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // Check if user is logged in but user data is not available
         if (auth?.jwt && !auth?.user) {
             dispatch(getUser());
         }
@@ -1555,17 +1762,10 @@ export const Navbar = () => {
 
     const isLoggedIn = Boolean(auth?.jwt);
 
-    const handleLogout = () => {
-        localStorage.clear();
-        dispatch({ type: LOGOUT });
-        navigate("/account/login");
-    };
-
     const handleProfileClick = () => {
         navigate("/my-profile");
     };
 
-    // Get first letter of user's name for avatar
     const getAvatarText = () => {
         if (auth?.user?.fullName) {
             return auth.user.fullName[0].toUpperCase();
@@ -1576,49 +1776,48 @@ export const Navbar = () => {
     return (
         <nav className="navbar-container">
             <div className="w-full bg-[#e91e63] py-2 px-5 lg:px-20 flex items-center justify-between fixed top-0 left-0 z-50">
-                {/* Left - Logo */}
+                {/* Logo */}
                 <div className="flex items-center space-x-2">
-                    <span 
-                        onClick={() => navigate("/")} 
-                        className="text-white text-2xl font-semibold cursor-pointer">
+                    <span
+                        onClick={() => navigate("/")}
+                        className="text-white text-2xl font-semibold cursor-pointer"
+                    >
                         Swaad
                     </span>
                 </div>
 
-                {/* Right - Icons */}
+                {/* Right Side */}
                 <div className="flex items-center space-x-2 lg:space-x-10">
                     <IconButton>
                         <SearchIcon sx={{ fontSize: "1.5rem", color: "white" }} />
                     </IconButton>
 
                     {isLoggedIn ? (
-                        <>
-                            {/* Avatar displaying first letter of username */}
-                            <div className="flex items-center space-x-4">
-                                <button 
-                                    onClick={handleProfileClick} 
-                                    className="w-8 h-8 flex items-center justify-center text-white bg-transparent border border-white rounded-full hover:bg-white hover:text-[#e91e63] transition">
+                        <Tooltip title={auth.user?.fullName || "Profile"}>
+                            <IconButton onClick={handleProfileClick}>
+                                <Avatar
+                                    sx={{
+                                        bgcolor: "white",
+                                        color: "#e91e63",
+                                        width: 36,
+                                        height: 36,
+                                        fontWeight: "bold",
+                                        fontSize: "1rem",
+                                        border: "2px solid #e91e63"
+                                    }}
+                                >
                                     {getAvatarText()}
-                                </button>
-
-                                {/* Logout Button */}
-                                <button 
-                                    onClick={handleLogout} 
-                                    className="text-white px-3 py-1 bg-red-500 rounded-md hover:bg-red-700 transition">
-                                    Logout
-                                </button>
-                            </div>
-                        </>
+                                </Avatar>
+                            </IconButton>
+                        </Tooltip>
                     ) : (
                         <IconButton onClick={() => navigate("/account/login")}>
-                            <Person sx={{ fontSize: "1.5rem", color: "white" }} />
+                            <PersonIcon sx={{ fontSize: "1.5rem", color: "white" }} />
                         </IconButton>
                     )}
 
                     <IconButton onClick={() => navigate("/cart")}>
-                        {/* <Badge color="primary" badgeContent={cart.cart?.items.length}> */}
-                        <Badge color="primary" badgeContent={cart?.items?.length || 0}>
-
+                        <Badge color="primary" badgeContent={cart?.cartItems?.length || 0}>
                             <ShoppingCartIcon sx={{ fontSize: "1.5rem", color: "white" }} />
                         </Badge>
                     </IconButton>

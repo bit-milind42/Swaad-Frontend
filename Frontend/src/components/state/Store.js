@@ -62,7 +62,7 @@ const rootReducer = combineReducers({
 
 // Load user & token from localStorage
 const storedUser = localStorage.getItem("user");
-const storedToken = localStorage.getItem("token");
+const storedToken = localStorage.getItem("jwt");
 
 const initialState = {
     auth: {

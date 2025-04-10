@@ -5,11 +5,22 @@ import { UserProfile } from "./UserProfile";
 import { Address } from "./Address";
 // import { Favorites } from "./Favorites";
 import  Favorites  from "./Favorites";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 import { Events } from "./Events";
 import { Orders } from "./Orders";
 
+
 const Profile = () => {
+    const { jwt } = useSelector(state => state.auth);
+
+    if (!jwt) {
+    return <Navigate to="/account/login" />;
+    }
+
+    
+
     // const [openSideBar, setOpenSideBar] = useState(false);
     return (
         <div className="lg:flex justify-between">
