@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createIngredient, createIngredientCategory } from "../../components/state/ingredients/Action";
 
 const CreateIngredientForm =()=>{
-    // const {restaurant,ingredients}=useSelector(store=>store)
     const restaurant = useSelector((store) => store.restaurant);
     const ingredients = useSelector((store) => store.ingredients);
 
@@ -15,11 +14,9 @@ const CreateIngredientForm =()=>{
         e.preventDefault(); 
         const data={
             restaurantId: restaurant.usersRestaurant.id,
-            ingredientName: formData.ingredientName,  // Change 'name' to 'ingredientName'
+            ingredientName: formData.ingredientName,  
             categoryId: formData.categoryId
-            // ...formData,
-            // restaurantId: restaurant.usersRestaurant.id,
-            // ingredientCategoryId: formData.ingredientCategoryId
+            
         };
         dispatch(createIngredient({data,jwt}))
         console.log(data);

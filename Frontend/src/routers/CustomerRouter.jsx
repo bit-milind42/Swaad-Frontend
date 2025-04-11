@@ -15,7 +15,6 @@ export const CustomerRouter=()=> {
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/account/:register' element={<Home/>}/>
-                {/* <Route path='/account/:city/:title/:id' element={<RestaurantDetails/>}/> */}
                 <Route path='/restaurant/:id' element={<RestaurantDetails />} />
 
                 <Route path='/cart' element={<Cart/>}/>

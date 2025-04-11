@@ -13,7 +13,7 @@ import {
 } from "./ActionType"; 
 import {  CREATE_MENU_ITEM_REQUEST, CREATE_MENU_ITEM_SUCCESS, GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE, GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST, GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS } from "./ActionType";
 import { CREATE_MENU_ITEM_FAILURE } from "./ActionType";
-//localhost:5454/api/admin/ingredients/food/16 
+
 
 export const createMenuItem = ({menu, jwt}) => { 
     return async (dispatch) => { 
@@ -77,7 +77,7 @@ export const searchMenuItem = ({ keyword, jwt }) => {
 };
 
 
-// export const getAllIngredientsOfmenuItem = (reqData) => {}
+
 
 
 
@@ -123,3 +123,13 @@ async (dispatch) => {
         dispatch({ type: DELETE_MENU_ITEM_FAILURE, payload: error }); 
     } 
 };
+
+
+
+
+
+
+
+
+
+

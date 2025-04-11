@@ -17,17 +17,7 @@ export const MenuTable=()=>{
 
     const navigate=useNavigate();
 
-    // useEffect(()=>{
-    //     dispatch(getMenuItemsByRestaurantId({
-    //         jwt,
-    //         restaurantId:restaurant.usersRestaurant.id,
-    //         vegetarain:false,
-    //         nonveg:false,
-    //         seasonal:false,
-    //         foodCategory:""
-    //     }))
-
-    // },[])
+    
 
     useEffect(() => {
         const restaurantId = restaurant?.usersRestaurant?.id;

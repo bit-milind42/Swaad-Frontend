@@ -26,7 +26,6 @@ export const IngredientCategoryTable=()=>{
     const {restaurant,ingredients}=useSelector(store=>store)
     const jwt=localStorage.getItem('jwt')
 
-    // dispatch(getIngredientCategory({id:restaurant.userRestaurant.id,jwt}))
     useEffect(()=>{
         dispatch(getIngredientCategory({id:restaurant.usersRestaurant.id,jwt}))
     },[])

@@ -5,21 +5,7 @@ import { categorizeIngredients } from "../util/categrizeIngredients";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../state/cart/Action";
 
-// const ingredients=[
-//     {
-//         category:"Nuts & seeds",
-//         ingredients:"Cashews"
-//     },
-//     {
-//         category:"Protein",
-//         ingredients:"Protein"
-//     },
-//     {
-//         category:"Protein",
-//         ingredients:"Bacon strips"
-//     }
-    
-// ]
+
 
 const demo=[
     {

@@ -41,10 +41,7 @@ const RestaurantDetails = () => {
     }
     console.log("restaurant",restaurant)
 
-    // useEffect(() => {
-    //     dispatch(getRestaurantById({jwt,restaurantId:id}))
-    //     dispatch(getRestaurantsCategory({jwt,restaurantId:id}))
-    // },[]);
+    
 
     useEffect(() => {
         if (id && jwt) {
@@ -52,12 +49,7 @@ const RestaurantDetails = () => {
           dispatch(getRestaurantsCategory({ jwt, restaurantId: id }));
         }
       }, [id, jwt]);
-      
-
-    // useEffect(()=>{
-    //     dispatch(getMenuItemsByRestaurantId({jwt,restaurantId:id,vegetarain:foodType==="vegetarian",nonveg:foodType==="non_vegetarian",seasonal:foodType==="seasonal",foodCategory:selectedCategory}))
-
-    // },[selectedCategory,foodType])
+    
 
     useEffect(() => {
         if (id && jwt) {

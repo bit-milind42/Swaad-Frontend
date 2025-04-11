@@ -5,9 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUsersOrders } from '../state/order/Action';
 
 export const Orders = () => {
-    const {cart,auth,order }= useSelector((state) => state.auth);
+    const cart = useSelector((state) => state.cart);
+    const auth = useSelector((state) => state.auth);
+    const order = useSelector((state) => state.order);
+    const jwt = auth?.jwt || localStorage.getItem("jwt");
+
     const navigate = useNavigate();
-    const jwt = localStorage.getItem("jwt");
+    
     const dispatch=useDispatch();
 
     useEffect(()=>{

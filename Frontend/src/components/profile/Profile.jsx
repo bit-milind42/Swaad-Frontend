@@ -3,7 +3,6 @@ import { ProfileNavigation } from "./ProfileNavigation";
 import { Route, Routes } from "react-router-dom";
 import { UserProfile } from "./UserProfile";
 import { Address } from "./Address";
-// import { Favorites } from "./Favorites";
 import  Favorites  from "./Favorites";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";

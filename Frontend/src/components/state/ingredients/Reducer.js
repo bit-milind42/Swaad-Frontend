@@ -33,14 +33,7 @@ export const ingredientReducer = (state= initialState, action) => {
                 ...state, 
                 ingredients: [...state.ingredients, action.payload], 
             }; 
-        // case UPDATE_STOCK: 
-        //     return { 
-        //         ...state, 
-        //         update: action.payload,
-        //         ingredients: state.ingredients.map((item)=>
-        //             item.id === action.payload.id ? action.payload : item 
-        //         ),
-        //     };
+        
 
         case UPDATE_STOCK:
             return {

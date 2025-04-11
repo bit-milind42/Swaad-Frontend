@@ -21,7 +21,6 @@ const style = {
 export const IngredientTable=()=>{
     const dispatch=useDispatch();
     const jwt=localStorage.getItem("jwt");
-    // const {restaurant,ingredients}=useSelector(store=>store)
     const restaurant = useSelector((store) => store.restaurant);
     const { ingredients, category } = useSelector((store) => store.ingredients);
 
@@ -63,8 +62,7 @@ export const IngredientTable=()=>{
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                            {/* {ingredients.ingredients.map((item) => ( */}
-                            {/* {Array.isArray(ingredients) && ingredients.map((item) => ( */}
+                            
 
                             {ingredients.map((item) => (
                                  
