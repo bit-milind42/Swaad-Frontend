@@ -38,10 +38,10 @@ Authentication is JWT-based.
 ## 🖼️ Demo Screenshots
 
 ### 📱 Customer Panel
-![Customer Panel Screenshot](./assets/customer-panel.png)
+![Customer Panel Screenshot](https://raw.githubusercontent.com/bit-milind42/Mental_Health_Chatbot/refs/heads/main/Customer.png)
 
 ### 🧑‍🍳 Restaurant Owner Panel
-![Restaurant Panel Screenshot](./assets/restaurant-panel.png)
+![Restaurant Panel Screenshot](https://raw.githubusercontent.com/bit-milind42/Mental_Health_Chatbot/refs/heads/main/Restaurant.png)
 
 ---
 
