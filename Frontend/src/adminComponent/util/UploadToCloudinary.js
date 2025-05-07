@@ -1,6 +1,7 @@
-const upload_preset ="Swaad-Food"
-const cloud_name="du9olpzjg"
-const api_url = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`
+// login into cloudinary and write your own preset name,cloud name and api_url
+const upload_preset ="Write_your_own"
+const cloud_name="Write_your_own"
+const api_url = `Wrtie_your_own`
 
 export const uploadImageToCloudinary = async(file) => {
     const data=new FormData();
